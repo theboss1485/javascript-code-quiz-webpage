@@ -1,0 +1,53 @@
+h1{
+    margin: 2em auto;
+    width: fit-content;
+}
+
+p{
+    font-size: 1.5em;
+    
+}
+
+button:hover{
+    cursor:pointer
+}
+
+#begin-button{
+    background-color: aquamarine;
+    border: none;
+    border-radius: 0.25em;
+    display: flex;
+    font-size: 1em;
+    font-weight: bold;
+    margin: auto;
+    padding: 5px;
+
+}
+
+#introduction{
+    width: 50%;
+    margin: auto;
+}
+
+@media screen and (max-width: 700px){
+    #introduction{
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    h1{
+        font-size: 6vw;
+    }
+
+    p {
+            font-size: 5vw;
+    }
+
+    #begin-button {
+        font-size: 4.5vw;
+    }
+
+}
+
