@@ -3,13 +3,51 @@ h1{
     width: fit-content;
 }
 
+header{
+    display: flex;
+}
+
 p{
     font-size: 1.5em;
     
 }
 
+button{
+    display: block;
+    margin: auto;
+}
+
 button:hover{
     cursor:pointer
+}
+
+.answerButtons{
+    
+    background-color: aquamarine;
+    border: none;
+    text-align: left;
+    margin: 1em 0;
+    border-radius: 0.5em;
+    width: 50%
+}
+
+.margin-2{
+    width: 50%;
+    margin: auto;
+    text-align: left;
+}
+
+#answers{
+    display: block;
+    text-align: left;
+    width: 50%;
+
+}
+
+#all-done-heading{
+    margin: 2em auto 2em 0;
+    text-align: left;
+    width: 50%;
 }
 
 #begin-button{
@@ -21,7 +59,10 @@ button:hover{
     font-weight: bold;
     margin: auto;
     padding: 5px;
+}
 
+.display-none{
+    display: none;
 }
 
 #introduction{
@@ -29,9 +70,40 @@ button:hover{
     margin: auto;
 }
 
+#question{
+    margin: 2em auto 2em 0;
+    text-align: left;
+}
+
+#question-answers-and-validation-string{
+    margin: auto;
+}
+
+#submit-initials{
+    display: inline;
+}
+
+.slignt-left-margin{
+    margin-left: 0.5em;
+}
+
+#timer{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 1em;
+}
+
+#view-high-scores {
+    margin-left: 1em;
+}
+
 @media screen and (max-width: 700px){
     #introduction{
         width: 80%;
+    }
+
+    #answers {
+        width: 75%;
     }
 
 }

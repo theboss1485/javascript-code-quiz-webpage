@@ -4,18 +4,42 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <script src="assets/javascript/script.js"></script>
+        <script src="assets/javascript/quiz-questions.js" defer></script>
+        <script src="assets/javascript/quiz-logic.js" defer></script>
         <title>JavaScript Code Quiz Webpage</title>
     </head>
     <body>
-        <h1>JavaScript Coding Quiz Challenge</h1>
+        <header>
+            <p id="view-high-scores">View High Scores</p>
+            <p id="timer">Timer: 0</p>
+        </header>
+        <h1 id="introductory-header">JavaScript Coding Quiz Challenge</h1>
         <section id="introduction">
             <p>
                 Try to answer the following JavaScript code-related questions within the time limit.  Keep in mind that incorrect
                 answers will penalize your score/time limit by ten seconds.
             </p>
             <button id="begin-button">Begin Quiz</button>
-
         </section>
+        
+        <section id="question-answers-and-validation-string" class="margin-2 display-none">
+            <h1 id="question"></h1>
+            <section id="answers">
+                <button id="answer-1" class="answerButtons"> </button>
+                <button id="answer-2" class="answerButtons"> </button>
+                <button id="answer-3" class="answerButtons"> </button>
+                <button id="answer-4" class="answerButtons"> </button>
+            </section>
+            <p id="validation-string"></p>
+        </section>
+
+        <section id="enter-initials" class="margin-2 display-none">
+            <h1 id="all-done-heading">All Done!</h1>
+            <p></p>
+            <label for="initials-textbox">Enter your initials:</label>
+            <input id="initials-textbox" class="slight-left-margin" type="text" placeholder="Your Initials" maxlength="3">
+            <button id="submit-initials" class="slight-left-margin">Submit</button>
+        </section>
+
     </body>
 </html>
