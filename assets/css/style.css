@@ -1,3 +1,11 @@
+button{
+    display: block;
+    margin: auto;
+    background-color: aquamarine;
+}
+
+
+
 h1{
     margin: 2em auto;
     width: fit-content;
@@ -7,19 +15,16 @@ header{
     display: flex;
 }
 
+label {
+    font-size: 1.5em;
+}
+
 p{
     font-size: 1.5em;
     
 }
 
-button{
-    display: block;
-    margin: auto;
-}
 
-button:hover{
-    cursor:pointer
-}
 
 .answerButtons{
     
@@ -31,11 +36,59 @@ button:hover{
     width: 50%
 }
 
+.button-container{
+    margin: auto;
+    width: fit-content;
+    
+}
+
+.display-none{
+    display: none;
+}
+
+.display-block{
+    display: block;
+}
+
+/* The Xpert Learning Assistant AI gave me the code for this function */
+.fadeOut{
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.inline-button{
+    background-color: aquamarine;
+    border: none;
+    border-radius: 0.25em;
+    display: inline;
+    font-size: 1em;
+    font-weight: bold;
+    margin: auto;
+    padding: 5px;
+
+    
+}
+
+.slignt-left-margin{
+    margin-left: 0.5em;
+}
+
+
 .margin-2{
     width: 50%;
     margin: auto;
-    text-align: left;
+    text-align: center;
 }
+
+.score-class{
+    background-color: aqua;
+    width: 50%;
+    margin: 0.75em auto;
+    padding-left: 0.5em;
+    border-radius: 0.5em;
+}
+
+
 
 #answers{
     display: block;
@@ -45,13 +98,12 @@ button:hover{
 }
 
 #all-done-heading{
-    margin: 2em auto 2em 0;
-    text-align: left;
+    margin: 1em auto;
+    text-align: center;
     width: 50%;
 }
 
 #begin-button{
-    background-color: aquamarine;
     border: none;
     border-radius: 0.25em;
     display: flex;
@@ -61,13 +113,25 @@ button:hover{
     padding: 5px;
 }
 
-.display-none{
-    display: none;
+button:hover{
+    cursor:pointer;
+    background-color:#1fc868
 }
+
+
 
 #introduction{
     width: 50%;
     margin: auto;
+}
+
+#initials-textbox{
+    margin: auto 0.5em;
+}
+
+#no-scores-text{
+    margin: 0 auto 1em auto;
+    width: fit-content;
 }
 
 #question{
@@ -79,13 +143,15 @@ button:hover{
     margin: auto;
 }
 
-#submit-initials{
-    display: inline;
+#scoreboard{
+    width: 30%;
+    margin: auto;
 }
 
-.slignt-left-margin{
-    margin-left: 0.5em;
+#submit-initials{
+    margin-top: 0.25em;
 }
+
 
 #timer{
     width: fit-content;
@@ -93,8 +159,35 @@ button:hover{
     margin-right: 1em;
 }
 
-#view-high-scores {
-    margin-left: 1em;
+#validation-string{
+    text-align: center;
+}
+
+#view-high-scores-button {
+    background-color: white;
+    border: none;
+    color: rgb(58, 84, 179);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5em;
+    margin: 0;
+    padding: 1em;
+}
+
+#view-high-scores-button:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px){
+    #scoreboard{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 900px){
+    #enter-initials{
+        width: 95%;
+    }
 }
 
 @media screen and (max-width: 700px){
@@ -108,18 +201,43 @@ button:hover{
 
 }
 
+@media screen and (max-width: 650px){
+
+    #question-answers-and-validation-string{
+        width: 75%;
+    }
+}
+
 @media screen and (max-width: 500px) {
     h1{
         font-size: 6vw;
     }
 
     p {
-            font-size: 5vw;
-    }
-
-    #begin-button {
         font-size: 4.5vw;
     }
 
+    label {
+        font-size: 5vw;
+    }
+
+    #begin-button, .inline-button{
+        font-size: 4.25vw;
+    }
+
+
+
+    #initials-textbox{
+        width: 50%;
+        margin: 0.5em auto;
+    }
+
+} 
+
+@media screen and (max-width: 300px) {
+    .inline-button{
+        display: block;
+        margin: 0.5em auto;
+    }
 }
 
