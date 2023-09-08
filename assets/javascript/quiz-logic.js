@@ -1,3 +1,4 @@
+// This function starts the countdown at the beginning of each quiz
 function countdown(){
 
     arrayIndexes = populateArray();
@@ -11,12 +12,7 @@ function countdown(){
 
     interval = setInterval(function(){
 
-        
-        
         possibleTimerStop();
-
-
-        
 
     }, 1000)
 
@@ -26,6 +22,7 @@ function countdown(){
     
 }
 
+// This function determines whether to stop the timer each time said timer ticks down.
 function possibleTimerStop(){
     if(secondsRemaining <= 0){
         secondsRemaining = 0;
@@ -41,6 +38,7 @@ function possibleTimerStop(){
 
 }
 
+// This function displays a question and its answers on the screen.
 function generateQuestion(){
 
     var introduction = document.getElementById("introduction")
@@ -51,14 +49,14 @@ function generateQuestion(){
         introduction.classList.add("display-none");
     }
 
-    
-
     questionAndAnswers.classList.remove("display-none");
     questionAndAnswers.classList.add("display-block");
 
     var randomNumberBetweenZeroAndOne = Math.random();
     var randomNumberUpToArrayLength = (Math.floor(randomNumberBetweenZeroAndOne * arrayIndexes.length));
 
+    /* Each time a question is asked, the question ID of that question is removed from the array of indexes, 
+    so that questions don't get duplicated.*/
     questionId = arrayIndexes[randomNumberUpToArrayLength];
     var removalIndex = arrayIndexes.indexOf(questionId);
     arrayIndexes.splice(removalIndex, 1);
@@ -71,6 +69,8 @@ function generateQuestion(){
     questionsRemaining--;
 }
 
+/* This function populates an array with indexes of each question.  This is for keeping track of which questions 
+have been asked so that they don't duplicate.*/
 function populateArray(){
     arrayIndexes = [];
     for(var counter = 0; counter < quizQuestions.length; counter++){
@@ -80,63 +80,71 @@ function populateArray(){
     return arrayIndexes;
 }
 
+// This function is called each time an answer to a question is clicked.
 function answerClicked(event){
+    
     var correct = false;
-    if(event.currentTarget){
-        if (event.currentTarget === answerOneButton){
-            if(answerOneButton.textContent === quizQuestions[questionId].answer){
-                correct = true;
-            } 
-    
-        } else if(event.currentTarget === answerTwoButton){
-            if(answerTwoButton.textContent === quizQuestions[questionId].answer){
-                correct = true;
-            } 
+    if(event.currentTarget.textContent === quizQuestions[questionId].answer){
+        correct = true;
+    } 
 
-        } else if(event.currentTarget === answerThreeButton){
-            if(answerThreeButton.textContent === quizQuestions[questionId].answer){
-                correct = true;
-            } 
-
-        } else if(event.currentTarget === answerFourButton){
-            if(answerFourButton.textContent === quizQuestions[questionId].answer){
-                correct = true;
-            }
-        } 
-
-        if(correct === false){
-            secondsRemaining -= 10;
-        }
+    if(correct === false){
+        secondsRemaining -= 10;
     }
-
     
 
+    
+    /* If the answer is correct, the screen displays "Correct!" in green.
+    Otherwise, "Wrong!" is displayed in red.*/
     if(correct === true){
+
         validation.textContent = "Correct!";
+
+        if(validation.classList.contains("red")){
+
+            validation.classList.remove("red");
+
+        }
+        
+        validation.classList.add("green");
+
     } else {
+
         validation.textContent = "Wrong!"
+
+        if(validation.classList.contains("green")){
+
+            validation.classList.remove("green");
+        }
+
+        validation.classList.add("red");
     }
 
     if(validation.classList.contains("display-none")){
+
         validation.classList.add("display-block");
     }
 
+    /* When the system displays the text saying "Correct!" or Wrong!", it fades out shortly
+    thereafter thanks to the following two functions.*/
     setTimeout(fadeOut, 1000);
     removeFadeOut();
     
 
+    // If no questions remain (out of 10), or the timer is at zero, the system stops the timer
     if(questionsRemaining > 0){
         generateQuestion();
     } else {
         possibleTimerStop();
         
-        if(secondsRemaining > 0){
+        if(secondsRemaining >= 0){
             enterHighScore();
-            clearInterval(interval)
+            clearInterval(interval);
         }
     }
 }
 
+// This function displays the form allowing the user to enter his or her high score.
 function enterHighScore(){
 
     var finalScore = document.getElementById("final-score");
@@ -155,6 +163,7 @@ function enterHighScore(){
 
 }
 
+// This function tests the initials the user entered to make sure they are alphabetical characters.
 function testLetters(letters){
 
     const regex = /^[a-zA-Z]+$/;
@@ -166,6 +175,8 @@ function testLetters(letters){
     return true;
 }
 
+/* This function is called when the user enters a score.  It does validation on the entered initials,
+and converts the score to JSON to be put into persistant storage. */
 function highScoreEntered(){
 
     var letters = document.getElementById("initials-textbox").value;
@@ -196,7 +207,8 @@ function highScoreEntered(){
         var score = {initials: letters, score: secondsRemaining};
         scoreArray.push(score);
 
-        // This Xpert Learning Assistant AI Chatbot helped me write this lambda expression.
+        /* The Xpert Learning Assistant AI Chatbot helped me write this lambda expression.  It sorts the score array
+        so that it will be displayed in descending order on the scoreboard.*/
         scoreArray.sort((a, b) => {
 
             if(a.score === b.score){
@@ -211,6 +223,7 @@ function highScoreEntered(){
     }
 }
 
+// This function displays the scoreboard when the user enters a score or clicks the "View High Scores" button.
 function displayHighScores(){
 
     /*This if-else condition makes sure that if the scoreboard is already displayed on the screen,
@@ -243,7 +256,8 @@ function displayHighScores(){
     
         if(scoreArray.length === 0){
 
-            //This is a check just to make sure the Clear High Scores button doesn't display if there are no scores.
+            /*This is a check just to make sure the Clear High Scores button doesn't display if there are no scores.
+            If there aren't any scores, text states that on the screen.*/
             if(clearHighScoresButton.style.display !== "none"){
 
                 clearHighScoresButton.style.display = "none";
@@ -284,17 +298,12 @@ function displayHighScores(){
             }
         }
     
-    
-        
-        
         scoreboard.classList.remove("display-none");
         scoreboard.classList.add("display-block");
     }
-
-
-
 }
 
+/*This function takes the user back to the screen screen when he or she clicks the "Go Back" button after entering a score.*/
 function goBack(){
 
     scoreboard.classList.remove("display-block");
@@ -306,18 +315,16 @@ function goBack(){
     introduction.classList.add("display-block");
     introduction.classList.remove("display-none");
 
-    removeScoresFromPage();
-
-
-   
-
+    if(noScoresText.classList.contains("display-none")){
+        removeScoresFromPage();
+    }
 }
 
+// This function is called when the user clicks the button to clear the high scores.  It calls the removeScoresFromPage() function.
 function clearHighScores(){
     localStorage.removeItem("scores");
     removeScoresFromPage();
 
-    
     noScoresText.classList.remove("display-none");
     noScoresText.classList.add("display-block");
 
@@ -325,8 +332,10 @@ function clearHighScores(){
     
 }
 
+/*This function actually takes the scores off of the page. */
 function removeScoresFromPage(){
-     // The Xpert Learning Assistant Chatbot the code for the rest of this function.
+
+     // The Xpert Learning Assistant Chatbot helped me with the code for the rest of this function.
      var scoreboard = document.getElementById("scoreboard");
      var scoreboardParagraphs = scoreboard.querySelectorAll('.score-class');
  
@@ -335,7 +344,8 @@ function removeScoresFromPage(){
      });
 }
 
-//The Xpert Learning Assistant gave me the code for this function.
+/*The Xpert Learning Assistant gave me the code for this function.  It allows the "Correct!" and "Wrong!" text
+to fade out when the user clicks an answer to a question.*/  
 function fadeOut(){
 
     validation.classList.add("fadeOut");
@@ -346,9 +356,6 @@ function removeFadeOut(){
     validation.classList.remove("fadeOut");
 }
     
-    
-
-
 var beginButton = document.getElementById("begin-button");
 var answerOneButton = document.getElementById("answer-1");
 var answerTwoButton = document.getElementById("answer-2");
@@ -367,7 +374,7 @@ var viewHighScoresButton = document.getElementById("view-high-scores-button");
 var introduction = document.getElementById("introduction");
 var questionAndAnswers = document.getElementById("question-and-answers");
 var enterInitials = document.getElementById("enter-initials");
-
+var answers = document.getElementById("answers")
 
 beginButton.addEventListener("click", countdown);
 answerOneButton.addEventListener('click', answerClicked);
@@ -379,16 +386,9 @@ goBackButton.addEventListener('click', goBack);
 clearHighScoresButton.addEventListener('click', clearHighScores);
 viewHighScoresButton.addEventListener('click', displayHighScores);
 
-
-
 var arrayIndexes = null;
 var scores = [];
 var questionId = 0;
 var questionsRemaining = 0;
 var interval = undefined;
 var secondsRemaining = 0;
-
-// if(localStorage.getItem("scores") === null){
-//     var jsonScores = JSON.stringify(scores);
-//     localStorage.setItem("scores", jsonScores);
-// }
