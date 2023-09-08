@@ -10,11 +10,11 @@
     </head>
     <body>
         <header>
-            <p id="view-high-scores">View High Scores</p>
+            <button id="view-high-scores-button">View High Scores</button>
             <p id="timer">Timer: 0</p>
         </header>
-        <h1 id="introductory-header">JavaScript Coding Quiz Challenge</h1>
-        <section id="introduction">
+        <section id="introduction" class="display-block">
+            <h1 id="introductory-header">JavaScript Coding Quiz Challenge</h1>
             <p>
                 Try to answer the following JavaScript code-related questions within the time limit.  Keep in mind that incorrect
                 answers will penalize your score/time limit by ten seconds.
@@ -22,7 +22,7 @@
             <button id="begin-button">Begin Quiz</button>
         </section>
         
-        <section id="question-answers-and-validation-string" class="margin-2 display-none">
+        <section id="question-and-answers" class="margin-2 display-none">
             <h1 id="question"></h1>
             <section id="answers">
                 <button id="answer-1" class="answerButtons"> </button>
@@ -30,15 +30,26 @@
                 <button id="answer-3" class="answerButtons"> </button>
                 <button id="answer-4" class="answerButtons"> </button>
             </section>
-            <p id="validation-string"></p>
         </section>
 
         <section id="enter-initials" class="margin-2 display-none">
             <h1 id="all-done-heading">All Done!</h1>
-            <p></p>
+            <p id="final-score" class="display-none">Your final score is 0</p>
+            <p id="error-message"></p>
             <label for="initials-textbox">Enter your initials:</label>
-            <input id="initials-textbox" class="slight-left-margin" type="text" placeholder="Your Initials" maxlength="3">
-            <button id="submit-initials" class="slight-left-margin">Submit</button>
+            <input id="initials-textbox" class="slight-left-margin" type="text" placeholder="Your Initials" maxlength="4">
+            <button id="submit-initials" class="slight-left-margin inline-button">Submit</button>
+        </section>
+        <p id="validation-string"></p>
+        <section id="scoreboard" class="display-none"> 
+            <h1 id="high-scores-heading">High Scores</h1>
+            
+            <p id="no-scores-text" class="display-none">There are no scores to display.</p>
+
+            <section class="button-container">
+                <button id="go-back-button"class="inline-button">Go Back</button>
+                <button id="clear-high-scores-button"class="inline-button">Clear High Scores</button>
+            </section>
         </section>
 
     </body>

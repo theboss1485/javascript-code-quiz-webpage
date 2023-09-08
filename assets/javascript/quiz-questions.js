@@ -1,13 +1,13 @@
 var quizQuestions = [
     {
         id: 0,
-        question: "Commonly used data types do NOT include:",
+        question: "Commonly used data types do NOT include ___",
         choices: ["strings", "booleans", "alerts", "numbers"],
         answer:  "alerts"
     },
     {
         id: 1,
-        question: "The condition within an if/else statement is enclosed within:", 
+        question: "The condition within an if/else statement is enclosed within ___", 
         choices: ["parentheses", "hard brackets", "curly brackets", "quotes"],
         answer: "parentheses"
     },
@@ -25,25 +25,25 @@ var quizQuestions = [
     },
     {
         id: 4,
-        question: "What character(s) represent(s) the logical AND operator in JavaScript",
+        question: "What character(s) represent(s) the logical AND operator in JavaScript?",
         choices:[ "||", "&&", "^", "!"],
         answer: "&&"
     },
     {
         id: 5,
-        question: "What character(s) represent(s) the logical OR operator in JavaScript",
+        question: "What character(s) represent(s) the logical OR operator in JavaScript?",
         choices:[ "||", "&&", "^", "!"],
         answer: "||"
     },
     {
         id: 6,
-        question: "What character(s) represent(s) the exclusive-OR (XOR) operator in JavaScript",
+        question: "What character(s) represent(s) the bitwise exclusive-OR (XOR) operator in JavaScript?",
         choices:[ "||", "&&", "^", "!"],
         answer: "^"
     },
     {
         id: 7,
-        question: "What character(s) represent(s) the logical NOT operator in JavaScript",
+        question: "What character(s) represent(s) the logical NOT operator in JavaScript?",
         choices:[ "||", "&&", "!", "^", ],
         answer: "!"
     },
@@ -55,13 +55,13 @@ var quizQuestions = [
     },
     {
         id: 9,
-        question: "A very useful tool used during development for printing content to the debugger is:",
+        question: "A very useful tool used during development for printing content to the debugger is ___",
         choices: ["JavaScript", "console.log()", "Terminal/Bash",  "for loops"],
         answer: "console.log()"
     },
     {
         id: 10,
-        question: "Arrays in JavaScript can be used to store: ",
+        question: "Arrays in JavaScript can be used to store ___ ",
         choices: ["numbers and strings", "other arrays", "booleans",  "all of the above"],
         answer: "all of the above"
     },
