@@ -9,10 +9,14 @@
         <title>JavaScript Code Quiz Webpage</title>
     </head>
     <body>
+
+        <!-- The header contains the view high scores button and the timer. -->
         <header>
             <button id="view-high-scores-button">View High Scores</button>
             <p id="timer">Timer: 0</p>
         </header>
+
+        <!-- This first section contains the introductory text and title, and the button to begin the quiz.-->
         <section id="introduction" class="display-block">
             <h1 id="introductory-header">JavaScript Coding Quiz Challenge</h1>
             <p>
@@ -22,7 +26,8 @@
             <button id="begin-button">Begin Quiz</button>
         </section>
         
-        <section id="question-and-answers" class="margin-2 display-none">
+        <!-- This next section displays the questions and the answers once the user starts the quiz. -->
+        <section id="question-and-answers" class="margin-auto display-none">
             <h1 id="question"></h1>
             <section id="answers">
                 <button id="answer-1" class="answerButtons"> </button>
@@ -32,7 +37,8 @@
             </section>
         </section>
 
-        <section id="enter-initials" class="margin-2 display-none">
+        <!-- After the user completes the quiz, this section displays the form that allows the user to enter his or her score. -->
+        <section id="enter-initials" class="margin-auto display-none">
             <h1 id="all-done-heading">All Done!</h1>
             <p id="final-score" class="display-none">Your final score is 0</p>
             <p id="error-message"></p>
@@ -41,6 +47,8 @@
             <button id="submit-initials" class="slight-left-margin inline-button">Submit</button>
         </section>
         <p id="validation-string"></p>
+
+        <!-- This section displays the scoreboard and the buttons for going back to the beginning and clearing the high scores. -->
         <section id="scoreboard" class="display-none"> 
             <h1 id="high-scores-heading">High Scores</h1>
             

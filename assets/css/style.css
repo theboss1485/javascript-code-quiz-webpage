@@ -1,10 +1,13 @@
-button{
-    display: block;
-    margin: auto;
-    background-color: aquamarine;
+body{
+    background: linear-gradient(90deg, rgb(0, 136, 255), rgb(22, 209, 22))
 }
 
-
+button{
+    background-color: aquamarine;
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+    margin: auto;
+}
 
 h1{
     margin: 2em auto;
@@ -24,18 +27,17 @@ p{
     
 }
 
-
-
 .answerButtons{
-    
     background-color: aquamarine;
     border: none;
-    text-align: left;
-    margin: 1em 0;
     border-radius: 0.5em;
+    font-size: 1.5em;
+    margin: 1em 0;
+    text-align: left;
     width: 50%
 }
 
+/* This class is for the container for the two buttons for going back to the start, and clearing the high scores. */
 .button-container{
     margin: auto;
     width: fit-content;
@@ -56,6 +58,14 @@ p{
     transition: opacity 1s;
 }
 
+.green{
+    color: rgb(0, 255, 0)
+}
+
+.red{
+    color: rgb(255, 18, 18)
+}
+
 .inline-button{
     background-color: aquamarine;
     border: none;
@@ -74,27 +84,27 @@ p{
 }
 
 
-.margin-2{
+.margin-auto{
     width: 50%;
     margin: auto;
     text-align: center;
 }
 
+
+/* This class is for each entry on the scoreboard. */
 .score-class{
     background-color: aqua;
-    width: 50%;
+    border-radius: 0.5em;
     margin: 0.75em auto;
     padding-left: 0.5em;
-    border-radius: 0.5em;
+    width: 50%;
 }
 
-
-
+/* The selector is for the four buttons that display the answers to each question. */
 #answers{
     display: block;
     text-align: left;
-    width: 50%;
-
+    width: 100%;
 }
 
 #all-done-heading{
@@ -103,6 +113,7 @@ p{
     width: 50%;
 }
 
+/* This selector is for the button that begins the quiz. */
 #begin-button{
     border: none;
     border-radius: 0.25em;
@@ -129,6 +140,7 @@ button:hover{
     margin: auto 0.5em;
 }
 
+/* This selector is for the text that displays if there are no scores to show on the scoreboard. */
 #no-scores-text{
     margin: 0 auto 1em auto;
     width: fit-content;
@@ -139,13 +151,13 @@ button:hover{
     text-align: left;
 }
 
-#question-answers-and-validation-string{
+#question-and-answers-{
     margin: auto;
 }
 
 #scoreboard{
-    width: 30%;
     margin: auto;
+    width: 30%;
 }
 
 #submit-initials{
@@ -154,11 +166,13 @@ button:hover{
 
 
 #timer{
-    width: fit-content;
+    
     margin-left: auto;
     margin-right: 1em;
+    width: fit-content;
 }
 
+/* This selector is for the text displaying 'Correct' or 'Wrong' when a question is answered. */
 #validation-string{
     text-align: center;
 }
@@ -167,6 +181,7 @@ button:hover{
     background-color: white;
     border: none;
     color: rgb(58, 84, 179);
+    background-color: rgb(0, 136, 255);
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.5em;
     margin: 0;
@@ -174,8 +189,17 @@ button:hover{
 }
 
 #view-high-scores-button:hover {
-    background-color: lightgreen;
+    background-color: rgb(126, 188, 238);
     cursor: pointer;
+}
+
+/* The media queries are for changing the widths and font sizes of certain elements based on screen size. */
+@media screen and (max-width: 1100px){
+    #question-and-answers{
+        width: 80%;
+    }
+    
+
 }
 
 @media screen and (max-width: 1000px){
@@ -191,6 +215,11 @@ button:hover{
 }
 
 @media screen and (max-width: 700px){
+    
+    .answerButtons{
+        width: 100%;
+    }
+
     #introduction{
         width: 80%;
     }
@@ -221,12 +250,17 @@ button:hover{
         font-size: 5vw;
     }
 
-    #begin-button, .inline-button{
+     .inline-button, #begin-button, #view-high-scores-button{
         font-size: 4.25vw;
+    }
+
+    .answerButtons{
+        font-size: 4.5vw;
     }
 
 
 
+    /* The last couple of media queries do change margin a lttle bit. */
     #initials-textbox{
         width: 50%;
         margin: 0.5em auto;
