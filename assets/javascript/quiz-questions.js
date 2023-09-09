@@ -1,13 +1,13 @@
 var quizQuestions = [
     {
         id: 0,
-        question: "Commonly used data types do NOT include ___",
+        question: "Commonly used data types do NOT include ___.",
         choices: ["strings", "booleans", "alerts", "numbers"],
         answer:  "alerts"
     },
     {
         id: 1,
-        question: "The condition within an if/else statement is enclosed within ___", 
+        question: "The condition within an if/else statement is enclosed within ___.", 
         choices: ["parentheses", "hard brackets", "curly brackets", "quotes"],
         answer: "parentheses"
     },
@@ -55,13 +55,13 @@ var quizQuestions = [
     },
     {
         id: 9,
-        question: "A very useful tool used during development for printing content to the debugger is ___",
+        question: "A very useful tool used during development for printing content to the debugger is ___.",
         choices: ["JavaScript", "console.log()", "Terminal/Bash",  "for loops"],
         answer: "console.log()"
     },
     {
         id: 10,
-        question: "Arrays in JavaScript can be used to store ___ ",
+        question: "Arrays in JavaScript can be used to store ___.",
         choices: ["numbers and strings", "other arrays", "booleans",  "all of the above"],
         answer: "all of the above"
     },

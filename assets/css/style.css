@@ -53,7 +53,7 @@ p{
 }
 
 /* The Xpert Learning Assistant AI gave me the code for this function */
-.fadeOut{
+.fade-out{
     opacity: 0;
     transition: opacity 1s;
 }
@@ -62,9 +62,6 @@ p{
     color: rgb(0, 255, 0)
 }
 
-.red{
-    color: rgb(255, 18, 18)
-}
 
 .inline-button{
     background-color: aquamarine;
@@ -75,9 +72,14 @@ p{
     font-weight: bold;
     margin: auto;
     padding: 5px;
-
-    
 }
+
+
+
+.red{
+    color: rgb(255, 18, 18)
+}
+
 
 .slignt-left-margin{
     margin-left: 0.5em;
@@ -237,7 +239,7 @@ button:hover{
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 525px) {
     h1{
         font-size: 6vw;
     }

@@ -8,7 +8,6 @@ function countdown(){
 
     timer.textContent = "Timer: " + secondsRemaining;
         
-    secondsRemaining--;
 
     interval = setInterval(function(){
 
@@ -24,7 +23,10 @@ function countdown(){
 
 // This function determines whether to stop the timer each time said timer ticks down.
 function possibleTimerStop(){
-    if(secondsRemaining <= 0){
+
+    /* I set the condition of secondsRemaining <= 1 here to avoid the case where, if the timer hit zero, the system would wait 
+    one additional second before displaying the elements for the user to enter his or her score.*/
+    if(secondsRemaining <= 1){
         secondsRemaining = 0;
         clearInterval(interval)
         enterHighScore();
@@ -131,7 +133,7 @@ function answerClicked(event){
     removeFadeOut();
     
 
-    // If no questions remain (out of 10), or the timer is at zero, the system stops the timer
+    // If no questions remain (out of 10), or the timer is at zero, the system stops the timer.
     if(questionsRemaining > 0){
         generateQuestion();
     } else {
@@ -146,6 +148,12 @@ function answerClicked(event){
 
 // This function displays the form allowing the user to enter his or her high score.
 function enterHighScore(){
+
+    if(errorMessage.textContent !== ""){
+        errorMessage.textContent = "";
+    }
+
+    document.getElementById("initials-textbox").value = "";
 
     var finalScore = document.getElementById("final-score");
 
@@ -163,7 +171,8 @@ function enterHighScore(){
 
 }
 
-// This function tests the initials the user entered to make sure they are alphabetical characters.
+/* This function tests the initials the user entered to make sure they are alphabetical characters.
+The Xpert Learning Assistant chatbot basically gave me the regular expression.*/
 function testLetters(letters){
 
     const regex = /^[a-zA-Z]+$/;
@@ -175,18 +184,14 @@ function testLetters(letters){
     return true;
 }
 
-/* This function is called when the user enters a score.  It does validation on the entered initials,
-and converts the score to JSON to be put into persistant storage. */
+/* This function is called when the user enters a score.  It calls the testLetters() function to do 
+validation on the entered initials, and it also converts the score to JSON to be put into persistant storage. */
 function highScoreEntered(){
 
     var letters = document.getElementById("initials-textbox").value;
 
-    var errorMessage =  document.getElementById("error-message");
-
-    //The first part of this condition was given to me by the Xpert Learning Assistant chatbot.
     if (testLetters(letters) === false || (letters.length !== 3 && letters.length !== 4)){
 
-        errorMessage.style.color = "red";
         errorMessage.textContent = "Error!  Please enter 3 or 4 alphabetical characters!";
 
     } else {
@@ -225,6 +230,9 @@ function highScoreEntered(){
 
 // This function displays the scoreboard when the user enters a score or clicks the "View High Scores" button.
 function displayHighScores(){
+
+    // This function call prevents scores from duplicating on the page.
+    removeScoresFromPage();
 
     /*This if-else condition makes sure that if the scoreboard is already displayed on the screen,
     nothing happens when the View High Scores button is clicked.*/
@@ -345,18 +353,19 @@ function removeScoresFromPage(){
 }
 
 /*The Xpert Learning Assistant gave me the code for this function.  It allows the "Correct!" and "Wrong!" text
-to fade out when the user clicks an answer to a question.*/  
+to fade out when the user clicks on an answer to a question.*/  
 function fadeOut(){
 
-    validation.classList.add("fadeOut");
+    validation.classList.add("fade-out");
 }
 
 function removeFadeOut(){
 
-    validation.classList.remove("fadeOut");
+    validation.classList.remove("fade-out");
 }
     
 var beginButton = document.getElementById("begin-button");
+var errorMessage =  document.getElementById("error-message");
 var answerOneButton = document.getElementById("answer-1");
 var answerTwoButton = document.getElementById("answer-2");
 var answerThreeButton = document.getElementById("answer-3");
