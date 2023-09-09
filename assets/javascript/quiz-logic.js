@@ -194,11 +194,7 @@ function testLetters(letters){
 validation on the entered initials, and it also converts the score to JSON to be put into persistant storage. */
 function highScoreEntered(){
 
-    if(secondsRemaining > 0){
-
-        secondsRemaining = 0;
-        timer.textContent = "Timer: " + secondsRemaining;
-    }
+        timer.textContent = "Timer: 0";
 
     // The validation text element is hidden so that the scoreboard will be closer to the top of the page.
     validation.classList.add("display-none");
