@@ -52,7 +52,7 @@ p{
     display: block;
 }
 
-/* The Xpert Learning Assistant AI gave me the code for this function */
+/* The Xpert Learning Assistant AI gave me the code for this selector. */
 .fade-out{
     opacity: 0;
     transition: opacity 1s;

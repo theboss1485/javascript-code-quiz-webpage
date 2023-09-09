@@ -231,8 +231,10 @@ function highScoreEntered(){
 // This function displays the scoreboard when the user enters a score or clicks the "View High Scores" button.
 function displayHighScores(flag = 0){
 
-    // This function call prevents scores from duplicating on the page.
+    
     if(flag === 1){
+
+        // This function call prevents scores from duplicating on the page.
         removeScoresFromPage();
     }
     
