@@ -62,7 +62,6 @@ p{
     color: rgb(0, 255, 0)
 }
 
-
 .inline-button{
     background-color: aquamarine;
     border: none;
@@ -74,8 +73,6 @@ p{
     padding: 5px;
 }
 
-
-
 .red{
     color: rgb(255, 18, 18)
 }
@@ -85,13 +82,11 @@ p{
     margin-left: 0.5em;
 }
 
-
 .margin-auto{
     width: 50%;
     margin: auto;
     text-align: center;
 }
-
 
 /* This class is for each entry on the scoreboard. */
 .score-class{
@@ -130,8 +125,6 @@ button:hover{
     cursor:pointer;
     background-color:#1fc868
 }
-
-
 
 #introduction{
     width: 50%;
@@ -200,8 +193,6 @@ button:hover{
     #question-and-answers{
         width: 80%;
     }
-    
-
 }
 
 @media screen and (max-width: 1000px){
@@ -229,7 +220,6 @@ button:hover{
     #answers {
         width: 75%;
     }
-
 }
 
 @media screen and (max-width: 650px){
@@ -260,14 +250,11 @@ button:hover{
         font-size: 4.5vw;
     }
 
-
-
     /* The last couple of media queries do change margin a lttle bit. */
     #initials-textbox{
         width: 50%;
         margin: 0.5em auto;
     }
-
 } 
 
 @media screen and (max-width: 300px) {

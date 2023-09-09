@@ -39,7 +39,6 @@ function possibleTimerStop(){
     }
 
     timer.textContent = "Timer: " + secondsRemaining; 
-
 }
 
 // This function displays a question and its answers on the screen.
@@ -67,6 +66,7 @@ function generateQuestion(){
     document.getElementById("question").textContent = quizQuestions[questionId].question;
     
     for(var answerCounter = 1; answerCounter <= 4; answerCounter++){
+
             document.getElementById("answer-" + answerCounter).textContent = quizQuestions[questionId].choices[answerCounter - 1];
     }
     
@@ -78,6 +78,7 @@ have been asked so that they don't duplicate.*/
 function populateArray(){
     arrayIndexes = [];
     for(var counter = 0; counter < quizQuestions.length; counter++){
+
         arrayIndexes.push(counter);
     }
 
@@ -88,15 +89,16 @@ function populateArray(){
 function answerClicked(event){
     
     var correct = false;
+
     if(event.currentTarget.textContent === quizQuestions[questionId].answer){
+
         correct = true;
     } 
 
     if(correct === false){
+
         secondsRemaining -= 10;
     }
-    
-
     
     /* If the answer is correct, the screen displays "Correct!" in green.
     Otherwise, "Wrong!" is displayed in red.*/
@@ -134,14 +136,17 @@ function answerClicked(event){
     setTimeout(fadeOut, 1000);
     removeFadeOut();
     
-
     // If no questions remain (out of 10), or the timer is at zero, the system stops the timer.
     if(questionsRemaining > 0){
+
         generateQuestion();
+
     } else {
+
         possibleTimerStop();
         
         if(secondsRemaining >= 0){
+
             enterHighScore();
             clearInterval(interval);
         }
@@ -152,6 +157,7 @@ function answerClicked(event){
 function enterHighScore(){
 
     if(errorMessage.textContent !== ""){
+
         errorMessage.textContent = "";
     }
 
@@ -162,15 +168,13 @@ function enterHighScore(){
     enterInitials.classList.add("display-block");
     finalScore.classList.add("display-block");
 
-
-
     if(secondsRemaining >= 0){
+
         finalScore.textContent = "Your final score is " + secondsRemaining;
     }
     
     questionAndAnswers.classList.remove("display-block")
     questionAndAnswers.classList.add("display-none");
-
 }
 
 /* This function tests the initials the user entered to make sure they are alphabetical characters.
@@ -191,6 +195,7 @@ validation on the entered initials, and it also converts the score to JSON to be
 function highScoreEntered(){
 
     if(secondsRemaining > 0){
+
         secondsRemaining = 0;
         timer.textContent = "Timer: " + secondsRemaining;
     }
@@ -211,9 +216,13 @@ function highScoreEntered(){
         enterInitials.classList.add("display-none");
     
         var jsonScoreArray = JSON.parse(localStorage.getItem("scores"));
+
         if(jsonScoreArray === null){
+           
             var scoreArray = [];
+
         } else{
+
             var scoreArray = jsonScoreArray;
         }
         
@@ -228,15 +237,18 @@ function highScoreEntered(){
         scoreArray.sort((a, b) => {
 
             if(a.score === b.score){
+
                 return a.initials.localeCompare(b.initials);
+
             } else{
+
                 return b.score - a.score;
             }
 
         });
+
         localStorage.setItem("scores", JSON.stringify(scoreArray));
         displayHighScoresFlag = 1
-
         displayHighScores();
     }
 }
@@ -246,10 +258,10 @@ function displayHighScores (){
 
     // If Display High Scores is clicked in the middle of a quiz, the timer resets to zero.
     if(secondsRemaining !== 0){
+
         secondsRemaining = 0;
     }
     
-
     displayHighScoresTimerFlag = 1;
 
     var localScores = localStorage.getItem("scores")
@@ -274,16 +286,19 @@ This helps the application be more resiliant across multiple tabs.  The other tw
     if(scoreboard.classList.contains("display-none") || scoresInLocalStorage !== scoresOnPage){
 
         if(introduction.classList.contains("display-block")){
+
             introduction.classList.remove("display-block");
             introduction.classList.add("display-none");
         }
     
         if(questionAndAnswers.classList.contains("display-block")){
+
             questionAndAnswers.classList.remove("display-block");
             questionAndAnswers.classList.add("display-none");
         }
     
         if(enterInitials.classList.contains("display-block")){
+
             enterInitials.classList.remove("display-block");
             enterInitials.classList.add("display-none");
         }
@@ -291,6 +306,7 @@ This helps the application be more resiliant across multiple tabs.  The other tw
         var scoreArray = JSON.parse(localStorage.getItem("scores"));
     
         if(scoreArray === null){
+
             scoreArray = [];
         }
     
@@ -350,12 +366,14 @@ function goBack(){
     introduction.classList.remove("display-none");
 
     if(noScoresText.classList.contains("display-none")){
+
         removeScoresFromPage();
     }
 }
 
 // This function is called when the user clicks the button to clear the high scores.  It calls the removeScoresFromPage() function.
 function clearHighScores(){
+
     localStorage.removeItem("scores");
     removeScoresFromPage();
 
@@ -369,12 +387,13 @@ function clearHighScores(){
 /*This function actually takes the scores off of the page. */
 function removeScoresFromPage(){
 
-     // The Xpert Learning Assistant Chatbot helped me with the code for the rest of this function.
-     var scoreboard = document.getElementById("scoreboard");
-     var scoreboardParagraphs = scoreboard.querySelectorAll('.score-class');
+    // The Xpert Learning Assistant Chatbot helped me with the code for the rest of this function.
+    var scoreboard = document.getElementById("scoreboard");
+    var scoreboardParagraphs = scoreboard.querySelectorAll('.score-class');
  
-     scoreboardParagraphs.forEach(element => {
-         element.remove();
+    scoreboardParagraphs.forEach(element => {
+    element.remove();
+
     });
 }
 
@@ -403,11 +422,9 @@ var clearHighScoresButton = document.getElementById("clear-high-scores-button");
 var noScoresText = document.getElementById("no-scores-text");
 var displayHighScoresFlag = 0;
 var displayHighScoresTimerFlag = 0;
-
 var scoreboard = document.getElementById("scoreboard");
 var validation = document.getElementById("validation-string");
 var viewHighScoresButton = document.getElementById("view-high-scores-button");
-
 var introduction = document.getElementById("introduction");
 var questionAndAnswers = document.getElementById("question-and-answers");
 var enterInitials = document.getElementById("enter-initials");
