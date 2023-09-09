@@ -1,5 +1,6 @@
 // This function starts the countdown at the beginning of each quiz
 function countdown(){
+    displayHighScoresTimerFlag = 0;
 
     arrayIndexes = populateArray();
 
@@ -29,7 +30,11 @@ function possibleTimerStop(){
     if(secondsRemaining <= 1){
         secondsRemaining = 0;
         clearInterval(interval);
-        enterHighScore();
+
+        if(displayHighScoresTimerFlag === 0){
+            enterHighScore();
+        }
+        
     } else if(questionsRemaining !== 0){
 
         secondsRemaining--;
@@ -188,6 +193,15 @@ function testLetters(letters){
 validation on the entered initials, and it also converts the score to JSON to be put into persistant storage. */
 function highScoreEntered(){
 
+    if(secondsRemaining > 0){
+        secondsRemaining = 0;
+        timer.textContent = "Timer: " + secondsRemaining;
+    }
+
+    // The validation text element is hidden so that the scoreboard will be closer to the top of the page.
+    validation.classList.add("display-none");
+    validation.classList.remove("display-block");
+
     var letters = document.getElementById("initials-textbox").value;
 
     if (testLetters(letters) === false || (letters.length !== 3 && letters.length !== 4)){
@@ -224,42 +238,50 @@ function highScoreEntered(){
 
         });
         localStorage.setItem("scores", JSON.stringify(scoreArray));
-        displayHighScores(1);
+        displayHighScoresFlag = 1
+
+        displayHighScores();
     }
 }
 
 // This function displays the scoreboard when the user enters a score or clicks the "View High Scores" button.
-function displayHighScores(flag = 0){
+function displayHighScores (){
 
-    if(flag === 1){
+    // If Display High Scores is clicked in the middle of a quiz, the timer resets to zero.
+    if(secondsRemaining !== 0){
+        secondsRemaining = 0;
+    }
+    
+
+    displayHighScoresTimerFlag = 1;
+
+    var localScores = localStorage.getItem("scores")
+
+    if(localScores !== null){
+
+        var scoresInLocalStorage = localScores.split("},{").length;
+        
+    }
+
+    var scoresOnPage = document.getElementById("scoreboard").querySelectorAll(".score-class").length;
+
+
+
+    
+/*This condition removes the scores from the page if the the scores don't exist in local storage, or the scores on the page don't match those in local storage.
+This helps the application be more resiliant across multiple tabs.  The other two conditions exist because I was hunting for a solution to display everything properly.  */
+    if(localStorage.getItem("scores") === null || (scoresInLocalStorage !== scoresOnPage) || ((displayHighScoresFlag === 1) && (noScoresText.classList.contains("display-block")))){
+            
         removeScoresFromPage();
     }
     
-
-    if(localStorage.getItem("scores") === null){
-            
-            removeScoresFromPage();
-
-            if(clearHighScoresButton.style.display !== "none"){
-
-                clearHighScoresButton.style.display = "none";
-            }
-    
-            noScoresText.classList.remove("display-none");
-            noScoresText.classList.add("display-block");
-        
-    }
-    
-    console.log(localStorage.getItem("scores"))
-
     /*This if-else condition makes sure that if the scoreboard is already displayed on the screen,
     nothing happens when the View High Scores button is clicked.*/
-    if(scoreboard.classList.contains("display-none")){
+    if(scoreboard.classList.contains("display-none") || scoresInLocalStorage !== scoresOnPage){
 
         if(introduction.classList.contains("display-block")){
             introduction.classList.remove("display-block");
             introduction.classList.add("display-none");
-    
         }
     
         if(questionAndAnswers.classList.contains("display-block")){
@@ -303,12 +325,18 @@ function displayHighScores(flag = 0){
             existingElement.insertAdjacentElement("afterend", scoreTag);
             
             }
-    
-            if(noScoresText.classList.contains("display-block")){
+
+            if(scoresInLocalStorage === 0 || scoresInLocalStorage === undefined){
+
+                noScoresText.classList.remove("display-none");
+                noScoresText.classList.add("display-block");
+                clearHighScoresButton.style.display = "none";
+
+            } else {
+
                 noScoresText.classList.remove("display-block");
                 noScoresText.classList.add("display-none");
             }
-        
     
         scoreboard.classList.remove("display-none");
         scoreboard.classList.add("display-block");
@@ -379,6 +407,8 @@ var timer =  document.getElementById("timer");
 var goBackButton = document.getElementById("go-back-button");
 var clearHighScoresButton = document.getElementById("clear-high-scores-button");
 var noScoresText = document.getElementById("no-scores-text");
+var displayHighScoresFlag = 0;
+var displayHighScoresTimerFlag = 0;
 
 var scoreboard = document.getElementById("scoreboard");
 var validation = document.getElementById("validation-string");
