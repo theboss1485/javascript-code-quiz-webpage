@@ -1,5 +1,6 @@
 // This function starts the countdown at the beginning of each quiz
 function countdown(){
+
     displayHighScoresTimerFlag = 0;
 
     arrayIndexes = populateArray();
@@ -9,17 +10,13 @@ function countdown(){
 
     timer.textContent = "Timer: " + secondsRemaining;
         
-
     interval = setInterval(function(){
 
         possibleTimerStop();
 
     }, 1000)
 
-    
-
     generateQuestion();
-    
 }
 
 // This function determines whether to stop the timer each time said timer ticks down.
@@ -264,9 +261,6 @@ function displayHighScores (){
     }
 
     var scoresOnPage = document.getElementById("scoreboard").querySelectorAll(".score-class").length;
-
-
-
     
 /*This condition removes the scores from the page if the the scores don't exist in local storage, or the scores on the page don't match those in local storage.
 This helps the application be more resiliant across multiple tabs.  The other two conditions exist because I was hunting for a solution to display everything properly.  */
@@ -381,7 +375,7 @@ function removeScoresFromPage(){
  
      scoreboardParagraphs.forEach(element => {
          element.remove();
-     });
+    });
 }
 
 /*The Xpert Learning Assistant gave me the code for this function.  It allows the "Correct!" and "Wrong!" text
@@ -403,7 +397,7 @@ var answerTwoButton = document.getElementById("answer-2");
 var answerThreeButton = document.getElementById("answer-3");
 var answerFourButton = document.getElementById("answer-4");
 var submitInitialsButton = document.getElementById("submit-initials");
-var timer =  document.getElementById("timer");
+var timer = document.getElementById("timer");
 var goBackButton = document.getElementById("go-back-button");
 var clearHighScoresButton = document.getElementById("clear-high-scores-button");
 var noScoresText = document.getElementById("no-scores-text");
