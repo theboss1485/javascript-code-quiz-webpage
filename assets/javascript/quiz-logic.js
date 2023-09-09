@@ -224,15 +224,18 @@ function highScoreEntered(){
 
         });
         localStorage.setItem("scores", JSON.stringify(scoreArray));
-        displayHighScores()
+        displayHighScores(1)
     }
 }
 
 // This function displays the scoreboard when the user enters a score or clicks the "View High Scores" button.
-function displayHighScores(){
+function displayHighScores(flag = 0){
 
     // This function call prevents scores from duplicating on the page.
-    removeScoresFromPage();
+    if(flag === 1){
+        removeScoresFromPage();
+    }
+    
 
     /*This if-else condition makes sure that if the scoreboard is already displayed on the screen,
     nothing happens when the View High Scores button is clicked.*/
