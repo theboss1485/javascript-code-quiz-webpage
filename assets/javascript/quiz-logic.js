@@ -28,7 +28,7 @@ function possibleTimerStop(){
     one additional second before displaying the elements for the user to enter his or her score.*/
     if(secondsRemaining <= 1){
         secondsRemaining = 0;
-        clearInterval(interval)
+        clearInterval(interval);
         enterHighScore();
     } else if(questionsRemaining !== 0){
 
@@ -43,7 +43,7 @@ function possibleTimerStop(){
 // This function displays a question and its answers on the screen.
 function generateQuestion(){
 
-    var introduction = document.getElementById("introduction")
+    var introduction = document.getElementById("introduction");
 
     if(introduction.classList.contains("display-block")){ 
     
@@ -224,20 +224,33 @@ function highScoreEntered(){
 
         });
         localStorage.setItem("scores", JSON.stringify(scoreArray));
-        displayHighScores(1)
+        displayHighScores(1);
     }
 }
 
 // This function displays the scoreboard when the user enters a score or clicks the "View High Scores" button.
 function displayHighScores(flag = 0){
 
-    
     if(flag === 1){
-
-        // This function call prevents scores from duplicating on the page.
         removeScoresFromPage();
     }
     
+
+    if(localStorage.getItem("scores") === null){
+            
+            removeScoresFromPage();
+
+            if(clearHighScoresButton.style.display !== "none"){
+
+                clearHighScoresButton.style.display = "none";
+            }
+    
+            noScoresText.classList.remove("display-none");
+            noScoresText.classList.add("display-block");
+        
+    }
+    
+    console.log(localStorage.getItem("scores"))
 
     /*This if-else condition makes sure that if the scoreboard is already displayed on the screen,
     nothing happens when the View High Scores button is clicked.*/
@@ -265,27 +278,13 @@ function displayHighScores(flag = 0){
             scoreArray = [];
         }
     
-        var existingElement = undefined;
-    
-        if(scoreArray.length === 0){
-
-            /*This is a check just to make sure the Clear High Scores button doesn't display if there are no scores.
-            If there aren't any scores, text states that on the screen.*/
-            if(clearHighScoresButton.style.display !== "none"){
-
-                clearHighScoresButton.style.display = "none";
-            }
-    
-            noScoresText.classList.remove("display-none");
-            noScoresText.classList.add("display-block");
-        
-        } else {
+            var existingElement = undefined;
     
             clearHighScoresButton.style.display = "inline";
     
             for(counter = 0; counter < scoreArray.length; counter++){
             
-            var scoreTag = document.createElement("p")
+            var scoreTag = document.createElement("p");
             scoreTag.textContent = scoreArray[counter].initials + " - " + scoreArray[counter].score;
     
             if(counter === 0){
@@ -309,7 +308,7 @@ function displayHighScores(flag = 0){
                 noScoresText.classList.remove("display-block");
                 noScoresText.classList.add("display-none");
             }
-        }
+        
     
         scoreboard.classList.remove("display-none");
         scoreboard.classList.add("display-block");
@@ -382,13 +381,13 @@ var clearHighScoresButton = document.getElementById("clear-high-scores-button");
 var noScoresText = document.getElementById("no-scores-text");
 
 var scoreboard = document.getElementById("scoreboard");
-var validation = document.getElementById("validation-string")
+var validation = document.getElementById("validation-string");
 var viewHighScoresButton = document.getElementById("view-high-scores-button");
 
 var introduction = document.getElementById("introduction");
 var questionAndAnswers = document.getElementById("question-and-answers");
 var enterInitials = document.getElementById("enter-initials");
-var answers = document.getElementById("answers")
+var answers = document.getElementById("answers");
 
 beginButton.addEventListener("click", countdown);
 answerOneButton.addEventListener('click', answerClicked);
